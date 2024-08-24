@@ -30,6 +30,8 @@ io.on("connection", (socket) => {
     io.emit('allUsers', Object.keys(users));
   })
   socket.on('message', (data) => {
+    console.log(data);
+    
     if (data.to && data.text) {
       console.log(data.to, data.text);
       
