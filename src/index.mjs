@@ -5,14 +5,14 @@ import { Server } from 'socket.io'
 
 let app = express();
 app.use(cors({
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:5501', 'http://127.0.0.1:5501', 'https://subhamk2004.github.io'],
+  origin: ['http://127.0.0.1:5502', 'http://localhost:5502', 'http://localhost:5501', 'http://127.0.0.1:5501', 'https://subhamk2004.github.io'],
   credentials: true
 }));
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:5501', 'http://127.0.0.1:5501', 'https://subhamk2004.github.io'],
+    origin: ['http://127.0.0.1:5502', 'http://localhost:5502', 'http://localhost:5501', 'http://127.0.0.1:5501', 'https://subhamk2004.github.io'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     credentials: true
@@ -24,10 +24,10 @@ app.use(express.json());
 let users = {};
 io.on("connection", (socket) => {
   socket.on('register', (data) => {
-    console.log(data);
     users[data.from] = socket.id;
     // users[data.from] = socket.id;
     console.log(users);
+    io.emit('allUsers', Object.keys(users));
   })
   socket.on('message', (data) => {
     if (data.to && data.text) {
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 
 });
 //
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
