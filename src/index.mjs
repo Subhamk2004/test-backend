@@ -4,7 +4,10 @@ import { createServer } from "http";
 import { Server } from 'socket.io'
 
 let app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:5501', 'http://127.0.0.1:5501', 'https://subhamk2004.github.io', 'https://subhamk2004.github.io/tempclient/'],
+  credentials: true
+}));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
