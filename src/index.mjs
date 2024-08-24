@@ -31,6 +31,8 @@ io.on("connection", (socket) => {
   })
   socket.on('message', (data) => {
     if (data.to && data.text) {
+      console.log(data.to, data.text);
+      
       const targetedSocketId = users[data.to];
       console.log('Targeted Socket Id: ', targetedSocketId);
 
