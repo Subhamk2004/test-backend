@@ -1,12 +1,11 @@
 {
   "name": "express-js",
   "version": "1.0.0",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon ./src/index.mjs",
-    "start": "node ./src/index.mjs",
-    "build:css": "npx tailwindcss -i ./src/styles.css -o ./src/output.css --minify"
+    "start": "node ./src/index.mjs"
   },
   "keywords": [],
   "author": "",
