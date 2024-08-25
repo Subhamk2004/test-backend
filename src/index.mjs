@@ -40,9 +40,7 @@ io.on("connection", (socket) => {
 
       if (targetedSocketId) {
         console.log(targetedSocketId);
-        socket.to(targetedSocketId).emit('recieve', {
-          text: data.text
-        });
+        socket.to(targetedSocketId).emit('recieve', data.text);
       }
     }
   })
